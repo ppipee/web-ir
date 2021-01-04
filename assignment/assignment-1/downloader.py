@@ -2,7 +2,7 @@ import requests
 import re
 
 from requests.exceptions import HTTPError
-from constants import HEADERS
+from config import HEADERS
 
 
 def getPage(url):
