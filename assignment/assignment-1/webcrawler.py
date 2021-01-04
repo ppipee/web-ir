@@ -94,8 +94,6 @@ while len(urls_visited) < MAX_URL_VISITED and len(frontier_queue) > 0:
 
     if(len(urls_visited) % 100 == 0):
         storingRobotsAndSitemaps()
-        storingTxt(('\n').join(frontier_queue), 'queue')
-
 
 storingRobotsAndSitemaps()
 

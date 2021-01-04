@@ -1,0 +1,9 @@
+kukr2.lib.ku.ac.th
+sis.ku.ac.th
+eng.src.ku.ac.th
+kukr2.lib.ku.ac.th:443
+fna.csc.ku.ac.th
+arc.csc.ku.ac.th
+e-office.edu.ku.ac.th
+eoffice.kus.ku.ac.th
+ag-ebook.lib.ku.ac.th

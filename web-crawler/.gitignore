@@ -1,6 +1,7 @@
 robots.txt
-sitemap.txt
+sitemaps.txt
 visited.txt
+queue.txt
 
 html
 __pycache__

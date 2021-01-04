@@ -7,6 +7,11 @@ MAX_URL_VISITED = 10000
 ERROR = 0.1
 URL_ERROR = MAX_URL_VISITED*ERROR
 
+HEADERS = {
+    'User-Agent': 'ppipee 1.0',
+    'From': 'kittapon.j@ku.th'
+}
+
 FILE_BLACKLISTS = ['.css', '.js', '.json', '.webp', '.xml', '.c', '.cc',
                    '.png', '.jpg', '.svg', '.jpeg', '.tiff',  '.bmp',
                    '.mp3', '.mp4', '.gif', '.ts', '.avi', '.flv', '.mkv', '.ovf', '.vmdk',
