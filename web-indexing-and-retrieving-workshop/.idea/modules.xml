@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/lucene-8.7.0-src/backward-codecs/backward-codecs.iml" filepath="$PROJECT_DIR$/lucene-8.7.0-src/backward-codecs/backward-codecs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lucene-8.7.0-src/benchmark/benchmark.iml" filepath="$PROJECT_DIR$/lucene-8.7.0-src/benchmark/benchmark.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lucene-8.7.0-src/classification/classification.iml" filepath="$PROJECT_DIR$/lucene-8.7.0-src/classification/classification.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lucene-8.7.0-src/codecs/codecs.iml" filepath="$PROJECT_DIR$/lucene-8.7.0-src/codecs/codecs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lucene-8.7.0-src/analysis/common/src/common.iml" filepath="$PROJECT_DIR$/lucene-8.7.0-src/analysis/common/src/common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lucene-8.7.0-src/core/core.iml" filepath="$PROJECT_DIR$/lucene-8.7.0-src/core/core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lucene-8.7.0-src/demo/demo.iml" filepath="$PROJECT_DIR$/lucene-8.7.0-src/demo/demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lucene-8.7.0-src/expressions/expressions.iml" filepath="$PROJECT_DIR$/lucene-8.7.0-src/expressions/expressions.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lucene-8.7.0-src/facet/facet.iml" filepath="$PROJECT_DIR$/lucene-8.7.0-src/facet/facet.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lucene-8.7.0-src/grouping/grouping.iml" filepath="$PROJECT_DIR$/lucene-8.7.0-src/grouping/grouping.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lucene-8.7.0-src/highlighter/highlighter.iml" filepath="$PROJECT_DIR$/lucene-8.7.0-src/highlighter/highlighter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lucene-8.7.0-src/analysis/icu/src/icu.iml" filepath="$PROJECT_DIR$/lucene-8.7.0-src/analysis/icu/src/icu.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lucene-8.7.0-src/join/join.iml" filepath="$PROJECT_DIR$/lucene-8.7.0-src/join/join.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lucene-8.7.0-src/analysis/kuromoji/kuromoji.iml" filepath="$PROJECT_DIR$/lucene-8.7.0-src/analysis/kuromoji/kuromoji.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lucene-8.7.0-src/luke/luke.iml" filepath="$PROJECT_DIR$/lucene-8.7.0-src/luke/luke.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lucene-8.7.0-src/memory/memory.iml" filepath="$PROJECT_DIR$/lucene-8.7.0-src/memory/memory.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lucene-8.7.0-src/misc/misc.iml" filepath="$PROJECT_DIR$/lucene-8.7.0-src/misc/misc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lucene-8.7.0-src/monitor/monitor.iml" filepath="$PROJECT_DIR$/lucene-8.7.0-src/monitor/monitor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lucene-8.7.0-src/analysis/morfologik/morfologik.iml" filepath="$PROJECT_DIR$/lucene-8.7.0-src/analysis/morfologik/morfologik.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lucene-8.7.0-src/analysis/nori/nori.iml" filepath="$PROJECT_DIR$/lucene-8.7.0-src/analysis/nori/nori.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lucene-8.7.0-src/analysis/opennlp/opennlp.iml" filepath="$PROJECT_DIR$/lucene-8.7.0-src/analysis/opennlp/opennlp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lucene-8.7.0-src/analysis/phonetic/phonetic.iml" filepath="$PROJECT_DIR$/lucene-8.7.0-src/analysis/phonetic/phonetic.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lucene-8.7.0-src/queries/queries.iml" filepath="$PROJECT_DIR$/lucene-8.7.0-src/queries/queries.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lucene-8.7.0-src/queryparser/queryparser.iml" filepath="$PROJECT_DIR$/lucene-8.7.0-src/queryparser/queryparser.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lucene-8.7.0-src/replicator/replicator.iml" filepath="$PROJECT_DIR$/lucene-8.7.0-src/replicator/replicator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lucene-8.7.0-src/sandbox/sandbox.iml" filepath="$PROJECT_DIR$/lucene-8.7.0-src/sandbox/sandbox.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lucene-8.7.0-src/analysis/smartcn/smartcn.iml" filepath="$PROJECT_DIR$/lucene-8.7.0-src/analysis/smartcn/smartcn.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lucene-8.7.0-src/spatial-extras/spatial-extras.iml" filepath="$PROJECT_DIR$/lucene-8.7.0-src/spatial-extras/spatial-extras.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lucene-8.7.0-src/spatial3d/spatial3d.iml" filepath="$PROJECT_DIR$/lucene-8.7.0-src/spatial3d/spatial3d.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lucene-8.7.0-src/analysis/stempel/stempel.iml" filepath="$PROJECT_DIR$/lucene-8.7.0-src/analysis/stempel/stempel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lucene-8.7.0-src/suggest/suggest.iml" filepath="$PROJECT_DIR$/lucene-8.7.0-src/suggest/suggest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lucene-8.7.0-src/test-framework/test-framework.iml" filepath="$PROJECT_DIR$/lucene-8.7.0-src/test-framework/test-framework.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lucene-8.7.0-src/analysis/icu/src/tools/tools.iml" filepath="$PROJECT_DIR$/lucene-8.7.0-src/analysis/icu/src/tools/tools.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lucene-8.7.0-src/tools/tools1.iml" filepath="$PROJECT_DIR$/lucene-8.7.0-src/tools/tools1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lucene-8.7.0-src/analysis/common/src/tools/tools2.iml" filepath="$PROJECT_DIR$/lucene-8.7.0-src/analysis/common/src/tools/tools2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/web-indexing-and-retrieving-workshop.iml" filepath="$PROJECT_DIR$/.idea/web-indexing-and-retrieving-workshop.iml" />
+    </modules>
+  </component>
+</project>
