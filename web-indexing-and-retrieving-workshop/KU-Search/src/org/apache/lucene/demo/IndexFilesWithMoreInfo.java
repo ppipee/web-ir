@@ -210,7 +210,9 @@ public class IndexFilesWithMoreInfo {
       
       String url = "http://" + file.toString().substring(docDir.toString().length()+1);
       doc.add(new StoredField("url", url));
-      
+
+//      doc.add(new StoredField("PageRank", score));
+
       if (writer.getConfig().getOpenMode() == OpenMode.CREATE) {
         // New index, so we just add the document (no old document can be there):
         System.out.println("adding " + file);

@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/KU-Search.iml" filepath="$PROJECT_DIR$/KU-Search.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../KU-SearchWebApp/KU-SearchWebApp.iml" filepath="$PROJECT_DIR$/../KU-SearchWebApp/KU-SearchWebApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../demo/demo.iml" filepath="$PROJECT_DIR$/../demo/demo.iml" />
     </modules>
   </component>
 </project>

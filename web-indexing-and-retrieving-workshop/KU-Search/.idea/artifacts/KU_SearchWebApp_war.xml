@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="KU-SearchWebApp:war">
+    <output-path>$PROJECT_DIR$/../KU-SearchWebApp/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>KU-SearchWebApp</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="KU-SearchWebApp-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="KU-SearchWebApp:war exploded" />
+    </root>
+  </artifact>
+</component>

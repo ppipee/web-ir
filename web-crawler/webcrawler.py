@@ -1,3 +1,8 @@
+#!/usr/lib/env python
+# coding: utf-8
+
+# In[1]:
+
 import time
 
 from downloader import getPage, getRobots, isRobots, hasSitemap
@@ -18,6 +23,8 @@ robot_visited = []
 sitemaps = []
 error = 0
 
+# In[2]:
+
 
 def errorOccur():
     global error
@@ -32,6 +39,8 @@ def storingRobotsAndSitemaps():
     storingTxt(('\n').join(sitemaps), 'sitemaps')
     storingTxt(('\n').join(urls_visited), 'visited')
 
+
+# In[3]:
 
 while len(urls_visited) < MAX_URL_VISITED and len(frontier_queue) > 0:
     # initial

@@ -216,6 +216,8 @@ public class SearchFilesWithMoreInfo {
           if (url != null) {
             System.out.println("   URL: " + url);
           }
+
+//          double pr = doc.get("PageRank");
         } else {
           System.out.println((i+1) + ". " + "No path for this document");
         }
