@@ -155,6 +155,7 @@ public class IndexFilesWithMoreInfo {
    * @throws IOException If there is a low-level I/O error
    */
   static void indexDocs(final IndexWriter writer, Path path) throws IOException {
+    System.out.println("############################ Path: " + path);
     if (Files.isDirectory(path)) {
       Files.walkFileTree(path, new SimpleFileVisitor<Path>() {
         @Override
