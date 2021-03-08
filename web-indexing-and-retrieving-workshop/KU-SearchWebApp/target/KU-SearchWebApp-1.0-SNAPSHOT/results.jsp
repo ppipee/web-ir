@@ -16,7 +16,7 @@
  -->
 <%@page pageEncoding="UTF-8"%>
 <%@ page import = "  javax.servlet.*, javax.servlet.http.*, java.io.*, java.net.URLEncoder, java.net.URLDecoder, java.nio.file.Paths, org.apache.lucene.analysis.Analyzer, org.apache.lucene.analysis.TokenStream, org.apache.lucene.analysis.standard.StandardAnalyzer, org.apache.lucene.analysis.th.ThaiAnalyzer, org.apache.lucene.document.Document, org.apache.lucene.index.DirectoryReader, org.apache.lucene.index.IndexReader, org.apache.lucene.queryparser.classic.QueryParser, org.apache.lucene.queryparser.classic.ParseException, org.apache.lucene.search.IndexSearcher, org.apache.lucene.search.Query, org.apache.lucene.search.ScoreDoc, org.apache.lucene.search.TopDocs, org.apache.lucene.search.highlight.Highlighter, org.apache.lucene.search.highlight.InvalidTokenOffsetsException, org.apache.lucene.search.highlight.QueryScorer, org.apache.lucene.search.highlight.SimpleFragmenter, org.apache.lucene.store.FSDirectory" %>
-
+<%@ page import="org.apache.lucene.demo.Search" %>
 <%
 /*
         Author: Andrew C. Oliver, SuperLink Software, Inc. (acoliver2@users.sourceforge.net)
@@ -48,7 +48,7 @@ public String escapeHTML(String s) {
         String indexName = indexLocation;       //local copy of the configuration variable
         IndexSearcher searcher = null;          //the searcher used to open/search the index
         Query query = null;                     //the Query created by the QueryParser
-        TopDocs hits = null;                    //the search results
+//        TopDocs hits = null;                    //the search results
         int numTotalHits = 0;                   //the number of search results
         int startindex = 0;                     //the first index displayed on this page
         int maxpage    = 50;                    //the maximum items displayed on this page
@@ -58,6 +58,9 @@ public String escapeHTML(String s) {
         int thispage = 0;                       //used for the for/next either maxpage or
                                                 //hits.totalHits - startindex - whichever is
                                                 //less
+        Search search = new Search();
+        TopDocs result = null;
+        ScoreDoc[] hits = null;
 
         try {
           IndexReader reader = DirectoryReader.open(FSDirectory.open(Paths.get(indexName)));
@@ -119,8 +122,10 @@ public String escapeHTML(String s) {
                                                                       // searcher != null was to handle
                                                                       // a weird compilation bug 
                 thispage = maxpage;                                   // default last element to maxpage
-                hits = searcher.search(query, maxpage + startindex);  // run the query
-                numTotalHits = Math.toIntExact(hits.totalHits.value);
+                result = searcher.search(query, maxpage + startindex);  // run the query
+                hits = search.getHits(searcher,result);
+
+                numTotalHits = Math.toIntExact(result.totalHits.value);
                 if (numTotalHits == 0) {                             // if we got no results tell the user
 %>
                 <p> I'm sorry I couldn't find what you were looking for. </p>
@@ -132,7 +137,7 @@ public String escapeHTML(String s) {
 
         if (error == false && searcher != null) {                   
 %>
-                <table>
+                <table class="container">
 <%
                 if ((startindex + maxpage) > numTotalHits) {
                         thispage = numTotalHits - startindex;      // set the max index to maxpage or last
@@ -142,7 +147,7 @@ public String escapeHTML(String s) {
 %>
 
 <%
-                        Document doc = searcher.doc(hits.scoreDocs[i].doc);                    //get the next document 
+                        Document doc = searcher.doc(hits[i].doc);                    //get the next document
                         String doctitle = doc.get("title");            //get its title
                         String url = doc.get("path");                  //get its path field
                         if (url != null && url.startsWith("../webapps/")) { // strip off ../webapps prefix if present
@@ -150,13 +155,32 @@ public String escapeHTML(String s) {
                         }
                         if ((doctitle == null) || doctitle.equals("")) //use the path if it has no title
                                 doctitle = url;
-                                                                       //then output!
+
+                        String content = doc.get("contents");
+
+                        QueryScorer queryScorer = new QueryScorer(query);
+                        Highlighter highlighter = new Highlighter(queryScorer);
+                        Analyzer analyzer = new ThaiAnalyzer();
+                        String fragment = "";
+
+                        if (doctitle != null) {
+                            TokenStream tokenStream = analyzer.tokenStream("contents", content);
+                            highlighter.setTextFragmenter(new SimpleFragmenter(100));
+                            try {
+                                fragment = highlighter.getBestFragments(tokenStream, content, 4, "...");
+                            } catch (InvalidTokenOffsetsException e) {
+                                // TODO Auto-generated catch block
+                                e.printStackTrace();
+                            }
+                        }
+
+                        //then output!
 %>
                 <tr>
                         <td><%=i+1%>&nbsp;&nbsp;</td><td><font color="blue"><b><%=doctitle%></b></font></td>
                 </tr>
                 <tr>
-		        <td></td><td><%=doc.get("contents")%></td>
+		        <td></td><td><%=fragment%></td>
                 </tr>
                 <tr>
 		        <td></td><td><a href=<%=doc.get("url")%> style="color:green;text-decoration: none;"><%=doc.get("url")%></a></td>

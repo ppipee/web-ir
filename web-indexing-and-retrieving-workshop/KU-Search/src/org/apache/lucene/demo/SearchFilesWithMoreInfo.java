@@ -23,6 +23,8 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Date;
 
 import org.apache.lucene.analysis.Analyzer;
@@ -162,13 +164,34 @@ public class SearchFilesWithMoreInfo {
     // Collect enough docs to show 5 pages
     TopDocs results = searcher.search(query, 5 * hitsPerPage);
     ScoreDoc[] hits = results.scoreDocs;
-    
+
+    Arrays.sort(hits, new Comparator<ScoreDoc>() {
+      @Override
+      public int compare(ScoreDoc o1, ScoreDoc o2) {
+        double score1 = 0, score2 = 0, omega = 0.5;
+        try {
+          score1 = omega*o1.score + (1-omega)* Double.parseDouble(searcher.doc(o1.doc).get("PageRank"));
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+        try {
+          score2 = omega*o2.score + (1-omega)* Double.parseDouble(searcher.doc(o2.doc).get("PageRank"));
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+
+        if (score1 < score2) return 1;
+        else if (score1 == score2) return 0;
+        else return -1;
+      }
+    });
+
     int numTotalHits = Math.toIntExact(results.totalHits.value);
     System.out.println(numTotalHits + " total matching documents");
 
     int start = 0;
     int end = Math.min(numTotalHits, hitsPerPage);
-        
+
     while (true) {
       if (end > hits.length) {
         System.out.println("Only results 1 - " + hits.length +" of " + numTotalHits + " total matching documents collected.");
@@ -190,6 +213,8 @@ public class SearchFilesWithMoreInfo {
         }
 
         Document doc = searcher.doc(hits[i].doc);
+
+
         String path = doc.get("path");
         if (path != null) {
           System.out.println((i+1) + ". " + path);
@@ -217,12 +242,19 @@ public class SearchFilesWithMoreInfo {
             System.out.println("   URL: " + url);
           }
 
-//          double pr = doc.get("PageRank");
+          String pageRank = doc.get("PageRank");
+          if (pageRank != null){
+            Double pr = Double.parseDouble(pageRank);
+            System.out.println("   Page Rank: " + pr);
+          }
+
+
         } else {
           System.out.println((i+1) + ". " + "No path for this document");
         }
-                  
       }
+
+
 
       if (!interactive || end == 0) {
         break;
@@ -267,5 +299,7 @@ public class SearchFilesWithMoreInfo {
         end = Math.min(numTotalHits, start + hitsPerPage);
       }
     }
+
+
   }
 }

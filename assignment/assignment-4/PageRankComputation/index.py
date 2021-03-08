@@ -3,7 +3,7 @@ import numpy as np
 
 BASE_PATH = '/home/ppipee/Desktop/CPE/web-ir/assignment/assignment-4/'
 ALPHA = 0.85
-SIGMA = 10**-15
+SIGMA = 10**-15 
 
 
 def loadGraph():

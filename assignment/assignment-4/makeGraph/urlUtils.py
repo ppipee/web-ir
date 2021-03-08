@@ -50,7 +50,7 @@ def getDirectoryPath(url):
     path = hostname + getPath(url)
 
     words = ['http://', 'https://', 'https:',
-             'http:', 'www.', 'www3.', '.php', '/index.php']
+             'http:', 'www.', 'www3.', '.php', '/index.php', '.jsp', './index.jsp']
 
     for word in words:
         path = path.replace(word, '')

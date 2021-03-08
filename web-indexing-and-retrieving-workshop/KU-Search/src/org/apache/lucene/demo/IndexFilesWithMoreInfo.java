@@ -28,7 +28,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
-import java.util.Date;
+import java.util.*;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
@@ -139,6 +141,58 @@ public class IndexFilesWithMoreInfo {
     }
   }
 
+  static ArrayList<String> readUrls(){
+    ArrayList<String> urls = new ArrayList<String>();
+
+    try {
+      File myObj = new File("/home/ppipee/Desktop/CPE/web-ir/assignment/assignment-4/urlmap.txt");
+      Scanner myReader = new Scanner(myObj);
+      while (myReader.hasNextLine()) {
+        String url = myReader.nextLine();
+        urls.add(url);
+      }
+      myReader.close();
+    } catch (FileNotFoundException e) {
+      System.out.println("An error occurred.");
+      e.printStackTrace();
+    }
+
+    return urls;
+  }
+
+  static ArrayList<Double> readScore(){
+    ArrayList<Double> scores = new ArrayList<Double>();
+
+    try {
+      File myObj = new File("/home/ppipee/Desktop/CPE/web-ir/web-indexing-and-retrieving-workshop/page_scores.txt");
+      Scanner myReader = new Scanner(myObj);
+      while (myReader.hasNextLine()) {
+        String score = myReader.nextLine();
+        scores.add(Double.parseDouble(score));
+      }
+      myReader.close();
+    } catch (FileNotFoundException e) {
+      System.out.println("An error occurred.");
+      e.printStackTrace();
+    }
+
+    return scores;
+  }
+
+  static Hashtable<String,Double> urlMapper(){
+    ArrayList<Double> scores = readScore();
+    ArrayList<String> urls = readUrls();
+    Hashtable<String,Double> mapper = new Hashtable<String,Double>();
+
+    for(int i=0;i<scores.size();i++){
+      mapper.put(urls.get(i), scores.get(i));
+    }
+    System.out.println(mapper);
+
+    return  mapper;
+  }
+
+
   /**
    * Indexes the given file using the given writer, or if a directory is given,
    * recurses over files and directories found under the given directory.
@@ -155,13 +209,21 @@ public class IndexFilesWithMoreInfo {
    * @throws IOException If there is a low-level I/O error
    */
   static void indexDocs(final IndexWriter writer, Path path) throws IOException {
-    System.out.println("############################ Path: " + path);
+    Hashtable<String,Double> mapper = urlMapper();
     if (Files.isDirectory(path)) {
       Files.walkFileTree(path, new SimpleFileVisitor<Path>() {
         @Override
         public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
           try {
-            indexDoc(writer, file, attrs.lastModifiedTime().toMillis());
+            String url = "http://"+file.toString().substring(docDir.toString().length()+1);
+            Double score = mapper.get(url);
+
+            if(score == null){
+              score = 0.0;
+              System.out.println("url" + url);
+            }
+
+            indexDoc(writer, file, attrs.lastModifiedTime().toMillis(),score);
           } catch (IOException ignore) {
             // don't index files that can't be read.
           }
@@ -169,12 +231,14 @@ public class IndexFilesWithMoreInfo {
         }
       });
     } else {
-      indexDoc(writer, path, Files.getLastModifiedTime(path).toMillis());
+      System.out.println("path "+path);
+
+      indexDoc(writer, path, Files.getLastModifiedTime(path).toMillis(),0.0);
     }
   }
 
   /** Indexes a single document */
-  static void indexDoc(IndexWriter writer, Path file, long lastModified) throws IOException {
+  static void indexDoc(IndexWriter writer, Path file, long lastModified,double score) throws IOException {
     try (InputStream stream = Files.newInputStream(file)) {
       // make a new, empty document
       Document doc = new Document();
@@ -212,7 +276,7 @@ public class IndexFilesWithMoreInfo {
       String url = "http://" + file.toString().substring(docDir.toString().length()+1);
       doc.add(new StoredField("url", url));
 
-//      doc.add(new StoredField("PageRank", score));
+      doc.add(new StoredField("PageRank", score));
 
       if (writer.getConfig().getOpenMode() == OpenMode.CREATE) {
         // New index, so we just add the document (no old document can be there):

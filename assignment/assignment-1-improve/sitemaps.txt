@@ -1,2 +1,10 @@
 kukr2.lib.ku.ac.th
 sis.ku.ac.th
+kukr2.lib.ku.ac.th:443
+en.eng.ku.ac.th
+aec.agr.ku.ac.th
+fna.csc.ku.ac.th
+arc.csc.ku.ac.th
+ag-ebook.lib.ku.ac.th
+e-office.edu.ku.ac.th
+eoffice.kus.ku.ac.th

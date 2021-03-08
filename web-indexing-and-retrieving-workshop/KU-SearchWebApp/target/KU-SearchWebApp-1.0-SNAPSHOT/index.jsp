@@ -3,12 +3,14 @@
 <html>
 <head>
     <title>JSP - Hello World</title>
+    <link href="./styles.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <%@include file="header.jsp"%>
-<h1><%= "Hello World!" %>
-</h1>
 <center>
+    <h3><%= "WEB-IR" %></h3>
+</center>
+<center class="container">
     <form name="search" action="results.jsp" method="get">
         <p>
             <input name="query" size="44"/>&nbsp;Search Criteria

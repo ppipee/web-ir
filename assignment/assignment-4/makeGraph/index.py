@@ -1,6 +1,6 @@
 from parser import urlNormalize, linkParser
 from loader import loadFileWithUrl
-from urlUtils import getHostname
+from urlUtils import getHostname, getDirectoryPath
 from constants import START_URL
 from store import storingTxt
 
@@ -53,16 +53,12 @@ class WebGraph:
         return urls
 
     def makeGraph(self):
-        # callerList = {}
-
-        # for caller, indexList in self.hashTable.items():
-        #     self.hashTable[caller] = list(set(indexList))
-
-        #     if(caller not in callerList.keys()):
-        #         callerList[caller] = True
-
-        urlMap = self.urlMapper.keys()
+        urlMap = []
         webGraph = []
+
+        for url in self.urlMapper.keys():
+            urlPath = 'http://' + getDirectoryPath(url)
+            urlMap.append(urlPath)
 
         for indexList in self.hashTable.values():
             if(len(indexList) == 0):
@@ -94,12 +90,13 @@ class WebGraph:
             if(roundNumber % 100 == 0):
                 print('q: ', len(self.queue), 'round:', roundNumber)
 
-        urlMap, webGraph = self.makeGraph()
-        storingTxt(('\n').join(urlMap), 'urlmap')
-        storingTxt(('\n').join(webGraph), 'webgraph')
+        return self.makeGraph()
 
 
 if __name__ == "__main__":
-    WebGraph(
+    urlMap, webGraph = WebGraph(
         startUrl=START_URL
     ).run()
+
+    storingTxt(('\n').join(urlMap), 'urlmap')
+    storingTxt(('\n').join(webGraph), 'webgraph')
